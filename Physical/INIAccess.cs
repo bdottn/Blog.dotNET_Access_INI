@@ -16,6 +16,13 @@ namespace Physical
             int nSize,
             string lpFileName);
 
+        [DllImport("kernel32")]
+        private static extern bool WritePrivateProfileString(
+            string lpAppName,
+            string lpKeyName,
+            string lpString,
+            string lpFileName);
+
         public INIAccess(string path)
         {
             this.path = path;
@@ -30,6 +37,11 @@ namespace Physical
             var value = tmpStringBuilder.ToString();
 
             return value;
+        }
+
+        public bool ModifyValue(string section, string key, string value)
+        {
+            return WritePrivateProfileString(section, key, value, this.path);
         }
     }
 }
