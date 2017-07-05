@@ -30,5 +30,19 @@ namespace Physical.UnitTest
 
             Assert.AreEqual(expected, actual);
         }
+
+        [TestMethod]
+        public void ModifyValueTest_傳入section為WebSite_傳入key為GitHub_傳入value為test_預期回傳成功()
+        {
+            var section = "WebSite";
+
+            var key = "GitHub";
+
+            var value = "test";
+
+            var actual = access.ModifyValue(section, key, value);
+
+            Assert.IsTrue(actual);
+        }
     }
 }
